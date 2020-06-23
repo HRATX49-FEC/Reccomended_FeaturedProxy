@@ -16,6 +16,11 @@ app.get('/reccomended*', (req, res) => {
   proxy.web(req, res, {target: 'http://reccomended-featuredserver-dev.us-east-2.elasticbeanstalk.com/'})
 })
 
+app.get('/main', (req, res) => {
+  console.log('redirecting to mainImage server')
+  proxy.web(req, res, {target: `http://purrgetmainitemdisplay-env.eba-upicdvwk.us-east-2.elasticbeanstalk.com/`});
+});
+
 //listen
 app.listen(PORT, () => {
   console.log(`Express is listening on port ${PORT}`)
