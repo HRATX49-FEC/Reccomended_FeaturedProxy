@@ -11,6 +11,10 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
+app.get('/reccomended*', (req, res) => {
+  console.log('Redirecting to reccomended service')
+  proxy.web(req, res, {target: 'http://localhost:5001'})
+})
 
 //listen
 app.listen(PORT, () => {
