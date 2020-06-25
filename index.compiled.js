@@ -20,6 +20,13 @@ app.get('/reccomended*', function (req, res) {
   proxy.web(req, res, {
     target: 'http://reccomended-featuredserver-dev.us-east-2.elasticbeanstalk.com/'
   });
+});
+
+app.get('/main', function (req, res) {
+  console.log('redirecting to mainImage server');
+  proxy.web(req, res, {
+    target: "http://purrgetmainitemdisplay-env.eba-upicdvwk.us-east-2.elasticbeanstalk.com/"
+  });
 }); //listen
 
 app.listen(PORT, function () {
