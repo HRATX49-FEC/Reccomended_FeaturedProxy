@@ -11,15 +11,16 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
+
+app.get('/main*', (req, res) => {
+  console.log('redirecting to mainImage server')
+  proxy.web(req, res, {target: 'http://localhost:5000'});
+});
+
 app.get('/reccomended*', (req, res) => {
   console.log('Redirecting to reccomended service')
-  proxy.web(req, res, {target: 'http://reccomended-featuredserver-dev.us-east-2.elasticbeanstalk.com/'})
+  proxy.web(req, res, {target: 'http://localhost:5001'})
 })
-
-app.get('/main', (req, res) => {
-  console.log('redirecting to mainImage server')
-  proxy.web(req, res, {target: `http://purrgetmainitemdisplay-env.eba-upicdvwk.us-east-2.elasticbeanstalk.com/`});
-});
 
 //listen
 app.listen(PORT, () => {
